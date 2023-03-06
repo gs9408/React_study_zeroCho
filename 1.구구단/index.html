@@ -7,9 +7,10 @@
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-    <title>Document</title>
+    <title>구구단</title>
 </head>
 <body>
+    <h1>1. 구구단</h1>
     <div id="root"></div>
     <script type="text/babel">
         class GuGuDan extends React.Component {
@@ -20,6 +21,7 @@
                     second: Math.ceil(Math.random() * 9),
                     value: '',
                     result: '',
+                    numResult: '',
                 };
             }
             onSubmit = (e) => {
@@ -30,7 +32,8 @@
                         result: '정답',
                         first: Math.ceil(Math.random() * 9),
                         second: Math.ceil(Math.random() * 9),
-                        // value: '',
+                        value: '',
+                        
                     });
                 }
                 else {
@@ -41,7 +44,10 @@
                 }
             };
 
-            onChange = (e) => this.setState({value: e.target.value});
+            onChange = (e) => this.setState({
+                value: e.target.value,
+                numResult: e.target.value,
+            });
 
             render() {
                 return (
@@ -50,8 +56,8 @@
                         <form onSubmit={this.onSubmit}>
                             <input type="number" value={this.state.value} onChange={this.onChange} />
                             <button>입력!</button>    
-                        </form>
-                        <div> = {this.state.value} {this.state.result}</div>
+                            </form>
+                            <div> = {this.state.numResult} {this.state.result}</div>
                     </div>
                 );
             }
