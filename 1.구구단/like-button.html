@@ -1,0 +1,69 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>웹게임</title>
+</head>
+<body>
+<div id="root"></div>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<!--<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>-->
+<!--<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>-->
+<script type="text/babel">
+    'use strict';
+
+    function LikeButton() { // 함수 컴포넌트 (함수형 컴포넌트 X)
+        // 함수 컴포넌트를 사용하면 this를 쓸 일이 없다.
+        const [liked, setLiked] = React.useState(false); // 구조분해
+        // 무슨 짓을 하던, 결국 return한것이 화면(화면에 출력)
+        if (liked) {
+            return 'You liked this.';
+        }
+        return (
+            <button onClick={() => { setLiked(true); }}>Like</button>
+        )
+    }
+    
+</script>
+<script>
+    // Class는 this 문제가 있어서 Class는 잘 안쓰게 됨
+    /*
+    class LikeButton extends React.Component{
+        // constructor(props) {
+        //     super(props);
+        //     this.state = {liked: false}; // 데이터
+        // }
+        state = {liked: false};
+
+        onClickButton = () => {
+            // this.state.liked = true;
+            this.setState({liked: true});
+        }
+
+        render() {
+            if (this.state.liked) {
+                return 'You liked this.' // 화면을 그리는 부분
+            }
+
+            // return React.createElement('button', {onClick: () => this.setState({liked: true})}, 'Like');
+            return (
+                // <button onClick={() => {
+                //     this.setState({liked: true}); // 객체를 함부로 바꾸지 말고 복사해라(concat, splice, map... 등 => 새로운 배열을 만들어냄)(불변성)
+                // }}>
+                //     Like
+                // </button>
+                <button onClick={this.onClickButton}>
+                    Like
+                </button>
+            )
+        }
+    } // Component = 데이터와 화면을 하나로 묶어둔 덩어리
+*/
+</script>
+<script type="text/babel">
+    // ReactDOM.render(<LikeButton />, document.querySelector('#root')); // React 17버전 코드 render를 사용하면 React 17버전으로 인식해서 18버전 돌아가지 않음
+    ReactDOM.createRoot(document.querySelector('#root')).render(<LikeButton />) // React 18버전 코드
+</script>
+</body>
+</html>
